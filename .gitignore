@@ -39,3 +39,14 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# banco de dados local (SQLite)
+/data/*.db
+/data/*.db-journal
+/data/*.db-wal
+/data/*.db-shm
+
+# arquivos de instrução pra agentes de IA (Claude Code / Next.js) — uso
+# local, não fazem parte da documentação pública do projeto
+/CLAUDE.md
+/AGENTS.md
