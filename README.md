@@ -1,12 +1,13 @@
 # Gestão de Gastos
 
-Dashboard pessoal e local para acompanhar gastos a partir de extratos
-bancários (CSV/XLS/XLSX): importa o extrato, categoriza as transações — com
-aprendizado automático de fornecedor — e mostra um resumo visual de para
-onde o dinheiro está indo.
+Dashboard financeiro pessoal para acompanhar e gerir gastos a partir de
+extratos bancários (CSV/XLS/XLSX): importa o extrato, categoriza as
+transações — com reconhecimento automático de fornecedor — e mostra um
+resumo visual de para onde o dinheiro está indo.
 
-Roda inteiramente na máquina do usuário, sem servidor remoto e sem
-autenticação: o banco de dados é um arquivo SQLite local.
+Roda de forma local, direto na sua máquina, sem servidor remoto e sem
+autenticação: os dados são guardados com SQLite, um banco de dados leve
+que salva tudo em um único arquivo no seu computador.
 
 ---
 
@@ -74,7 +75,7 @@ lib/
   db/                  # schema Drizzle, client, seed
   parsers/             # parsing de CSV/XLSX e detecção de colunas
   fornecedores/        # motor de correspondência e aprendizado de fornecedor
-  resumo/              # agregações e texto de análise
+  resumo/             # agregações e texto de análise
 drizzle/               # migrations SQL
 scripts/
   seed-demo-data.mjs    # popula a app com dados fictícios via API (npm run seed:demo)
@@ -91,25 +92,32 @@ npm run dev
 
 Abra `http://localhost:3000`. O banco SQLite (`data/gestao-gastos.db`) é
 criado e migrado automaticamente no primeiro boot, já com a categoria
-protegida "Outros" cadastrada.
+protegida "Outros" cadastrada — mas sem nenhuma transação, ou seja, o
+app abre "do zero", vazio.
 
-### Popular com dados de exemplo
+### Rodar com dados de exemplo (recomendado pra demonstração)
 
-Com o servidor rodando (`npm run dev`), num outro terminal:
+Com o servidor já rodando (`npm run dev`), num outro terminal:
 
 ```bash
 npm run seed:demo
 ```
 
-Cria categorias, fornecedores calibrados (com variações de texto
-conhecidas) e ~75 transações fictícias cobrindo os últimos 3 meses — os
-dois meses anteriores já totalmente confirmados, e o mês corrente
-parcialmente revisado (com transações pendentes/sugeridas de propósito,
-pra dar pra explorar os fluxos de categorização). O script apaga
-importações/fornecedores/categorias existentes antes de gerar os novos —
-não roda em produção, é só pra ambiente de demonstração/teste local.
+Isso popula o app com categorias, fornecedores calibrados e ~75
+transações fictícias cobrindo os últimos 3 meses — os dois meses
+anteriores já totalmente confirmados, e o mês corrente parcialmente
+revisado (com transações pendentes/sugeridas de propósito, pra dar pra
+explorar os fluxos de categorização). Recarregue a página depois de
+rodar o comando.
+
+### Rodar sem dados de exemplo
+
+Simplesmente **não rode** o `npm run seed:demo` — o app já abre vazio
+por padrão (só com a categoria "Outros"), pronto pra você importar seu
+próprio extrato bancário.
 
 ## Observação
 
 Os dados usados na demonstração (`npm run seed:demo`) são inteiramente
-fictícios, gerados só pra fins de teste — não são dados financeiros reais.
+fictícios, gerados só pra fins de teste e guardados no banco SQLite
+local — não são dados financeiros reais.
