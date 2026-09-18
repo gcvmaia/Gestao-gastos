@@ -2,7 +2,7 @@
 
 Dashboard financeiro pessoal para acompanhar e gerir gastos a partir de
 extratos bancários (CSV/XLS/XLSX): importa o extrato, categoriza as
-transações — com reconhecimento automático de fornecedor — e mostra um
+transações, com reconhecimento automático de fornecedor, e mostra um
 resumo visual de para onde o dinheiro está indo.
 
 Roda de forma local, direto na sua máquina, sem servidor remoto e sem
